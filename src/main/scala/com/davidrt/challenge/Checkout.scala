@@ -28,9 +28,7 @@ case class Checkout(pricingRules: List[Discount]) {
       discount: Discount =>
         organizedShoppingCart.find { case (item, _) => item.code.equals(discount.target) } match {
           case None => 0 // If there is no product of this kind no discount is calculated
-          case Some((item, quantity)) =>
-            println(item, discount.doDiscount(quantity, item.price))
-            discount.doDiscount(quantity, item.price)
+          case Some((item, quantity)) => discount.doDiscount(quantity, item.price)
         }
     }.sum
 
